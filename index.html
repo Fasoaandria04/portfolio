@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soa Alu | Excellence Artisanale Malgache</title>
+    <style>
+        :root {
+            --platinum: #E5E4E2;
+            --silver: #C0C0C0;
+            --gold: #D4AF37;
+            --charcoal: #36454F;
+            --cream: #FFFDD0;
+            --white: #FFFFFF;
+            --gradient-metal: linear-gradient(
+                135deg,
+                var(--platinum) 0%,
+                var(--silver) 50%,
+                var(--platinum) 100%
+            );
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background-color: var(--white);
+        }
+
+        /* Header élégant avec effet de verre */
+        .header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(229, 228, 226, 0.2);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .logo-container {
+            margin-right: 1rem; /* Espace entre le logo et la marque */
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container img {
+            height: 50px; /* Ajustez selon la taille souhaitée */
+            width: auto;
+            display: block;
+        }
+
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            background: linear-gradient(45deg, var(--charcoal), var(--gold));
+            -webkit-background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section avec parallax */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                rgba(54, 69, 79, 0.3),
+                rgba(54, 69, 79, 0.3)
+            ),
+            url('images/d5.jpeg');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            color: var(--white);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Sections communes */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-dark {
+            background-color: var(--charcoal);
+            color: var(--white);
+            margin: 0;
+            max-width: none;
+            padding: 6rem 5%;
+        }
+
+        .section-dark .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Grille des produits */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            position: relative; /* Permet de positionner les éléments enfants en absolu */
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.2); /* Couleur noire avec 20% d'opacité */
+            color: var(--white);
+        }
+
+
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        /* .product-info {
+            padding: 2rem;
+            background-color: rgb(253, 0, 55);
+        } */
+
+        /* Timeline historique */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--gold);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Formulaire de contact stylisé */
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--platinum);
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .btn {
+            background: var(--gradient-metal);
+            color: var(--charcoal);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer élégant */
+        .footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0;
+                padding-left: 2rem;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 2rem;
+            }
+        }
+
+        .contact-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .icon {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        margin-right: 1rem;
+        color: var(--gold);
+    }
+
+    .map-container {
+        height: 400px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .map-container {
+            height: 300px;
+        }
+    }
+
+    .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+            padding: 0 5%;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #36454F;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .text-gray-600 {
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Logo Soa Alu">
+            </div>
+            <a href="#" class="brand">Soa Alu</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">Notre Histoire</a>
+                <a href="#products" class="nav-link">Nos Créations</a>
+                <a href="#values" class="nav-link">Nos Valeurs</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">Soa Alu</h1>
+            <p class="hero-subtitle">L'excellence de l'artisanat Malagasy en aluminium</p>
+            <p>Créations uniques depuis 2009</p>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">Notre Histoire</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>2009</h3>
+                    <p>Naissance de Soa Alu et création du célèbre "Vilany Luxe d'Ambatolampy"</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>2014</h3>
+                    <p>Expansion vers les arts décoratifs et ustensiles de cuisine</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>2016</h3>
+                    <p>Lancement de notre collection de bijoux artisanaux</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <h3>Aujourd'hui</h3>
+                    <p>Référence dans l'artisanat malgache d'aluminium</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="section-dark">
+        <div class="container">
+            <h2 class="section-title">Nos Créations</h2>
+            <div class="products-grid">
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="images/d4.jpeg" alt="Vilany Luxe">
+                    </div>
+                    <div class="product-info">
+                        <h3>Vilany Luxe d'Ambatolampy</h3>
+                        <p>Notre produit phare, symbole de l'excellence malgache</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="images/d31.jpeg" alt="Ustensiles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ustensiles de Cuisine</h3>
+                        <p>Des créations fonctionnelles et élégantes</p>
+                    </div>
+                </div>
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="images/c30-Photoroom.jpg" alt="Bijoux">
+                    </div>
+                    <div class="product-info">
+                        <h3>Bijoux</h3>
+                        <p>L'aluminium sublimé en pièces uniques</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="section">
+        <div class="text-center">
+            <h2 class="section-title">Nos Valeurs</h2>
+            <p class="mt-4 text-lg text-gray-600">
+                Depuis 2009, Soa Alu s'est engagé dans l'excellence artisanale malagasy.
+            </p>
+        </div>
+    
+        <div class="values-grid mt-20">
+            <!-- Carte Savoir-faire -->
+            <div class="value-card fade-in">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="2">
+                        <circle cx="12" cy="8" r="7"/>
+                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+                    </svg>
+                </div>
+                <h3>Savoir-faire local</h3>
+                <p>Enrichi par l’expertise de nos employés, notre savoir-faire a évolué au fil du temps pour exceller dans la transformation de l’aluminium.</p>
+            </div>
+    
+            <!-- Carte Développement durable -->
+            <div class="value-card fade-in">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="2">
+                        <path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/>
+                        <path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.847 1.784 1.784 0 0 0 0-1.775l-3.11-4.445"/>
+                        <path d="m14 16-3 3 3 3"/>
+                        <path d="M8.293 13.596 7.196 9.5 3.1 10.598"/>
+                        <path d="m9.344 5.811 1.826-1.173a1.784 1.784 0 0 1 1.938-.074l4.187 2.6a2.032 2.032 0 0 1 1.027 1.723v.401"/>
+                        <path d="M13.378 9.633a2.953 2.953 0 0 1-.727-1.188 2.928 2.928 0 0 1-.065-1.523l.265-1.236-1.157.334"/>
+                    </svg>
+                </div>
+                <h3>Développement durable</h3>
+                <p>Utilisation d'aluminium recyclé pour créer des pièces uniques et écologiques.</p>
+            </div>
+    
+            <!-- Carte Personnalisation -->
+            <div class="value-card fade-in">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="2">
+                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                    </svg>
+                </div>
+                <h3>Personnalisation</h3>
+                <p>Chaque pièce peut être personnalisée selon vos souhaits.</p>
+            </div>
+    
+            <!-- Carte Excellence -->
+            <div class="value-card fade-in">
+                <div class="icon-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#B87333" stroke-width="2">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                </div>
+                <h3>Excellence</h3>
+                <p>Une qualité irréprochable dans chaque création.</p>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="contact" class="section">
+        <h2 class="section-title">Contactez-nous</h2>
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <div>
+                        <h3>Notre Adresse</h3>
+                        <p>Ambatolampy, Antsirabe, Madagascar<br>Le long de l'allée du caretope garage</p>
+                    </div>
+                </div>
+    
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <div>
+                        <h3>Horaires d'ouverture</h3>
+                        <p>Lundi - Samedi: 8h - 19h</p>
+                    </div>
+                </div>
+    
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <div>
+                        <h3>Téléphone</h3>
+                        <p>+261 34 58 779 48<br>+261 33 68 527 43</p>
+                    </div>
+                </div>
+    
+                <div class="contact-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <div>
+                        <h3>Email</h3>
+                        <p>soaalu@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Utilisation de l'iframe pour intégrer la carte -->
+            <div class="map-container fade-in">
+                <iframe 
+                    title="Localisation Soa Alu"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.769436095491!2d47.43993601078101!3d-19.37799815592762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDIyJzQwLjgiUyA0N8KwMjYnMjMuOCJF!5e0!3m2!1sfr!2sfr!4v1635959147693!5m2!1sfr!2sfr"
+                    width="100%"
+                    height="400"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+    
+    <div class="footer">
+        <div class="footer-content">
+            <div>
+                <h3>Soa Alu</h3>
+                <p>Artisanat d'excellence depuis 2009</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>soaalu@gmail.com<br>+261 34 58 779 48</p>
+            </div>
+            <div>
+                <h3>Suivez-nous</h3>
+                <p>Facebook<br>Instagram</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ajout des polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Script pour les animations fade-in -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+    
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+    
+</body>
+</html>
